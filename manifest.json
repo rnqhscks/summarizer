@@ -1,0 +1,35 @@
+{
+	"manifest_version": 3,
+	"name": "web summarizer",
+	"version": "3",
+	"description": "웹 페이지 요약 및 정리",
+	"permissions": [
+		"storage",
+		"activeTab",
+		"scripting",
+		"tabs"
+	],
+	"action": {
+		"default_popup": "popup.html"
+	},
+	"content_scripts": [
+		{
+			"matches": ["<all_urls>"],
+			"js": ["content.js"]
+		}
+	],
+	"host_permissions": [
+		"<all_urls>",
+		"http://172.16.9.135:3000/*"
+	],
+	"background": {
+		"service_worker": "background.js",
+		"type": "module"
+	},
+	"web_accessible_resources": [
+		{
+			"resources": ["popup.html"],
+			"matches": ["<all_urls>"]
+		}
+	]
+}
